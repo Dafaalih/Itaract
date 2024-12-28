@@ -1,0 +1,41 @@
+
+/* CSS (Tentang.module.css) */
+.container {
+  @apply w-full py-16 px-36 flex flex-col;
+}
+
+.judul {
+  @apply font-bold text-2xl mb-3;
+}
+
+.subjudul {
+  @apply text-justify text-base font-medium w-[900px] mb-7;
+}
+
+.wrapper_penjelasan {
+  @apply flex flex-row justify-between;
+}
+
+.nomor{
+  @apply w-16 h-16 mx-auto flex items-center justify-center bg-[#272727] rounded-full text-white font-bold text-2xl
+}
+
+.card{
+  @apply bg-[#272727] shadow-md rounded-lg p-6;
+}
+
+.penjelasan {
+  @apply w-[333px] flex flex-col;
+}
+
+.gambar {
+  @apply relative w-12 h-12;
+}
+
+.textpenjelasan {
+  @apply font-bold text-base my-2;
+}
+
+.text {
+  @apply text-justify text-base font-medium;
+}

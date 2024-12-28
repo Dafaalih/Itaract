@@ -1,0 +1,16 @@
+.container {
+  @apply bg-gray-50 py-10 px-4 sm:px-6 lg:px-8;
+}
+
+.judul {
+  @apply font-bold text-2xl mb-3;
+}
+
+.subjudul {
+  @apply text-justify text-base font-medium w-[900px]  mb-7;
+}
+
+.button {
+  @apply inline-block px-6 py-2 font-semibold rounded-full transition-all 
+  bg-[#272727] text-white hover:bg-white hover:text-black hover:border hover:border-[#1a1a1a];
+}

@@ -1,0 +1,28 @@
+.container {
+  @apply w-full my-14 px-36  flex flex-row justify-between;
+}
+.wrapper_judul {
+  @apply text-center px-6 py-10;
+}
+
+.judul {
+  @apply text-2xl md:text-3xl font-bold text-gray-800 mb-4;
+}
+
+.Penjelasan {
+  @apply text-gray-800 leading-relaxed max-w-3xl mx-auto mb-6;
+}
+
+.button {
+  @apply inline-block px-6 py-2 font-semibold rounded-full transition-all 
+  bg-[#272727] text-white hover:bg-white hover:text-black hover:border hover:border-[#1a1a1a];
+}
+
+
+
+
+
+.text {
+  @apply text-justify text-base font-medium;
+}
+

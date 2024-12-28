@@ -1,0 +1,23 @@
+.container {
+  @apply  bg-[#272727] text-white;
+}
+
+.quick{
+  @apply text-lg font-semibold mb-4
+}
+
+.logo{
+  @apply flex items-center space-x-3
+}
+
+.kontak {
+  @apply text-lg font-semibold mb-4;
+}
+
+.textdes{
+  @apply mt-3 text-sm text-white
+}
+
+.text {
+  @apply text-white;
+}

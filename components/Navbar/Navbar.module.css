@@ -1,0 +1,15 @@
+.container {
+  @apply border w-full h-20 flex flex-row items-center px-[98px] justify-between bg-transparent;
+}
+
+.wrapper_gambar {
+  @apply cursor-pointer;
+}
+
+.wrapper_menu {
+  @apply flex flex-row gap-[92px];
+}
+
+.menu {
+  @apply font-medium hover:font-bold text-center hover:border-b-2 hover:border-black w-24 h-7;
+}
