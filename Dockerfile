@@ -10,6 +10,6 @@ RUN npm run build
 FROM node:lts-alpine AS serve-stage
 WORKDIR /app
 RUN npm install -g serve
-COPY --from=build-stage /app/dist /app/dist
+COPY --from=build-stage /app/.next /app/.next
 EXPOSE 8080
 CMD ["serve", "-s", "dist", "-l", "8080"]
