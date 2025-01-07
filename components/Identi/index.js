@@ -1,25 +1,19 @@
-// Copyright 1999-2022. Plesk International GmbH. All rights reserved.
-
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import style from "./Identi.module.css";
 import Button from "../Button";
-
 
 const Identi = () => {
   const [prediction, setPrediction] = useState(null);
   const [dragActive, setDragActive] = useState(false);
   const [file, setFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleDrag = (e) => {
+  const handleDrag = useCallback((e) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
-  };
+    setDragActive(e.type === "dragenter" || e.type === "dragover");
+  }, []);
 
   const handleDrop = (e) => {
     e.preventDefault();
@@ -27,23 +21,33 @@ const Identi = () => {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
-      setFile(file);
-      setImagePreview(URL.createObjectURL(file)); // Menyimpan URL lokal gambar untuk preview
+      if (file.type.startsWith("image/")) {
+        setFile(file);
+        setImagePreview(URL.createObjectURL(file));
+        setError(null);
+      } else {
+        setError("Harap unggah file gambar.");
+      }
     }
   };
 
   const handleChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      setFile(file);
-      setImagePreview(URL.createObjectURL(file)); // Menyimpan URL lokal gambar untuk preview
+      if (file.type.startsWith("image/")) {
+        setFile(file);
+        setImagePreview(URL.createObjectURL(file));
+        setError(null);
+      } else {
+        setError("Harap unggah file gambar.");
+      }
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) {
-      alert("Silakan pilih file terlebih dahulu.");
+      setError("Silakan pilih file terlebih dahulu.");
       return;
     }
 
@@ -63,10 +67,8 @@ const Identi = () => {
 
       const data = await response.json();
       setPrediction(data);
-      console.log("Hasil prediksi:", data);
     } catch (error) {
-      console.error("Error saat mengunggah file:", error.message);
-      alert(`Gagal mengunggah file: ${error.message}`);
+      setError(`Gagal mengunggah file: ${error.message}`);
     }
   };
 
@@ -118,6 +120,10 @@ const Identi = () => {
                 <p className="text-gray-800 text-sm text-center">{file.name}</p>
               )}
             </div>
+
+            {error && (
+              <p className="text-red-500 text-sm text-center">{error}</p>
+            )}
 
             <div className={style.button}>
               <Button variant="primary" type="submit">
