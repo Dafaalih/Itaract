@@ -9,9 +9,7 @@ RUN npm run build
 # Stage 2: Serve
 FROM node:lts-alpine AS serve-stage
 WORKDIR /app
-RUN npm install -g serve
-COPY --from=build-stage /app/.next /app/.next
-COPY --from=build-stage /app/public /app/public
-COPY --from=build-stage /app/package.json /app/package.json
+COPY --from=build-stage /app/ ./
+ENV NODE_ENV production
 EXPOSE 8080
-CMD ["serve", "-s", ".next", "-l", "8080"]
+CMD ["npm", "run", "start"]
